@@ -41,28 +41,15 @@ var client = new Twitter({
 
 function omdbMovies(){
     
-    var nodeArgs = process.argv;
+    var movieName = process.argv[3];
 
-    var movieName = "";
-    
-    for (var i = 3; i < nodeArgs.length; i++) {
-    
-      if (i > 3 && i < nodeArgs.length) {
-    
-        movieName = movieName + "+" + nodeArgs[i];
-    
+      if(movieName === undefined){
+
+        movieName = "Mr. Nobody";
+        
       }
-    
-      else {
-    
-        movieName += nodeArgs[i];
-    
-      }
-    }
-    
+  
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy&tomatoes=true";
-
-    console.log(queryUrl);
 
     request(queryUrl, function(error, response, body) {
 
@@ -81,7 +68,6 @@ function omdbMovies(){
     });
     }
     
-
 var command = process.argv[2];
 
 switch(command){
@@ -92,6 +78,3 @@ switch(command){
         omdbMovies();
         break;
 }
-
-
- 
